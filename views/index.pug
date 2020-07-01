@@ -1,52 +1,23 @@
-html
-  head
-    style
-        include ../css/index.css
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
-    title= "CRUD"
-  body
-    div.secion(style='width: 95%; margin:auto;')
-     h1= "Laboratorio 8 CRUD"
-     .container
-        .row
-            div.carta.card(style='width: 25rem;')
-                div.card-body
-                h5.card-title.titulo Obtener estudiantes
-                h6.card-subtitle.mb-2.text-muted Usando Get
-                p.card-text
-                    | Es utilizado para realizar una peticion para obtener la informacion de todos los estudiantes guardados en la tabla de estudiantes
-                a.card-link(href='/api/estudiantes') Usar Get
+extends ./layout.pug
 
-            div.carta.card(style='width: 25rem;')
-                div.card-body
-                h5.card-title.titulo Agregar un estudiante
-                h6.card-subtitle.mb-2.text-muted Usando Post
-                p.card-text
-                    | Es utilizado para realizar una peticion para agregar la informacion de un estudiante en la tabla de estudiantes de la base de datos
-                a.card-link(href='#') Usar Post
+block content
 
-            div.carta.card(style='width: 25rem;')
-                div.card-body
-                h5.card-title.titulo Estudiante especifico
-                h6.card-subtitle.mb-2.text-muted Usando Get id
-                p.card-text
-                    | Es utilizado para realizar una peticion para obtener la informacion de un estudiante en especifico guardado en la tabla de estudiantes
-                a.card-link(href='#') Usar Get id
-
-            div.carta.card(style='width: 25rem;')
-                div.card-body
-                h5.card-title.titulo Actualizar estudiantes
-                h6.card-subtitle.mb-2.text-muted Usando Put
-                p.card-text
-                    | Es utilizado para realizar una peticion para actualizar la informacion de un estudiante especifico guardado en la tabla de estudiantes
-                a.card-link(href='#') Usar Put
-
-            div.carta.card(style='width: 25rem;')
-                div.card-body
-                h5.card-title.titulo Eliminar estudiantes
-                h6.card-subtitle.mb-2.text-muted Usando Delete
-                p.card-text
-                    | Es utilizado para realizar una peticion para eliminar la informacion de uno de los estudiantes guardados en la tabla de estudiantes
-                a.card-link(href='#') Usar Delete
-            
+  h1 #{title}
+  ul.list-group
+   
+      //- li.list-group-item= estudiante._id+" - "+estudiante.nombre+" - "+estudiante.edad
+  table.table
+    thead
+      tr
+        th(scope='col') #
+        th(scope='col') ID
+        th(scope='col') Nombre
+        th(scope='col') Edad
+    tbody
+     each estudiante, i in estudiantes
+        tr
+          th(scope='row')= i+1 
+          td= estudiante._id
+          td= estudiante.nombre
+          td= estudiante.edad
 

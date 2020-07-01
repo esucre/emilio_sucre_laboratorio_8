@@ -4,7 +4,10 @@ const Estudiantes = require('../models/Estudiantes');
 
 
 
-router.get('/', async (req, res) => {
+router.get('/agregar', async (req, res) => {
+    res.render('add_student', {
+        title: 'Agregar Estudiante',
+      });
     const estudiantes = await Estudiantes.find({}, ['id', 'nombre', 'edad']);
     res.json({
         estudiantes,
@@ -12,16 +15,15 @@ router.get('/', async (req, res) => {
     });
 });
 
-router.post('/', async (req, res) => {
+router.post('/agregar', async (req, res) => {
+
+    res.render('add_student', {
+      title: 'Agregar Estudiante',
+    });
+
     const { nombre, edad } = req.body;
     await Estudiantes.create({nombre, edad });
-    let respuesta = {
-        error: false,
-        codigo: 200,
-        mensaje: 'Agregado exitosamente',
-        respuesta: Estudiantes
-    };
-    res.json(respuesta);
+    res.writeContinue('Agregado exitosamente')
 });
 
 router.get('/:id', async (req, res) => {

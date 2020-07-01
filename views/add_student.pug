@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 #{title}
+  form(method='POST', action='/estudiantes/')
+    .form-group
+      label Nombre:
+      input.form-control(name='nombre', type='text')
+    .form-group
+      label Edad:
+      input.form-control(name='edad', type='text')
+    br
+    input.btn.btn-primary(type='submit', value='Submit')
