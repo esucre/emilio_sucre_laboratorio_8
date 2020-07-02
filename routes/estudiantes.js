@@ -8,11 +8,6 @@ router.get('/agregar', async (req, res) => {
     res.render('add_student', {
         title: 'Agregar Estudiante',
       });
-    const estudiantes = await Estudiantes.find({}, ['id', 'nombre', 'edad']);
-    res.json({
-        estudiantes,
-        cantidad: estudiantes.length
-    });
 });
 
 router.post('/agregar', async (req, res) => {
@@ -24,6 +19,7 @@ router.post('/agregar', async (req, res) => {
     const { nombre, edad } = req.body;
     await Estudiantes.create({nombre, edad });
     res.writeContinue('Agregado exitosamente')
+    res.redirect('/');
 });
 
 router.get('/:id', async (req, res) => {
