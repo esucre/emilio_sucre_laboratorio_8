@@ -4,21 +4,26 @@ const Estudiantes = require('../models/Estudiantes');
 
 
 
-router.get('/agregar', async (req, res) => {
-    res.render('add_student', {
-        title: 'Agregar Estudiante',
-      });
+router.get('/', async (req, res) => {
+    const estudiantes = await Estudiantes.find();
+    res.render('index', {
+        estudiantes
+    });
 });
 
 router.post('/agregar', async (req, res) => {
 
-    res.render('add_student', {
-      title: 'Agregar Estudiante',
-    });
+    // res.render('add_student', {
+    //     title: 'Agregar Estudiante',
+    // });
 
     const { nombre, edad } = req.body;
-    await Estudiantes.create({nombre, edad });
-    res.writeContinue('Agregado exitosamente')
+    await Estudiantes.create({ nombre, edad }, (err, estudiantes) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+    });
     res.redirect('/');
 });
 
@@ -33,17 +38,17 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.put('/:id', async (req, res) => {    
+router.put('/:id', async (req, res) => {
     try {
-        Estudiantes.findById(req.params.id, function(err, estudiante) {      
+        Estudiantes.findById(req.params.id, function (err, estudiante) {
 
-            estudiante.nombre = req.body.nombre; 
-            estudiante.edad = req.body.edad; 
+            estudiante.nombre = req.body.nombre;
+            estudiante.edad = req.body.edad;
             estudiante.save();
-            })
-    
+        })
 
-      
+
+
     } catch (error) {
         console.log(error);
         res.json({});
@@ -59,9 +64,9 @@ router.put('/:id', async (req, res) => {
 });
 
 
-router.delete('/:id', async (req, res) => {    
+router.delete('/:id', async (req, res) => {
     try {
-         Estudiantes.deleteOne({_id: req.params.id},function(err, dog) {}); 
+        Estudiantes.deleteOne({ _id: req.params.id }, function (err, dog) { });
     } catch (error) {
         console.log(error);
         res.json({});

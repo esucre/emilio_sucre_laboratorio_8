@@ -2,13 +2,30 @@ extends layout
 
 block content
   h1 #{title}
-  div(style='width:95%; margin:auto')
-    form(method='POST', action='/estudiantes/agregar')
-      .form-group
-        label Nombre:
-        input.form-control(name='nombre', type='text')
-      .form-group
-        label Edad:
-        input.form-control(name='edad', type='text')
-      br
-      input.btn.btn-primary(type='submit', value='Submit')
+  //- div(style='width:95%; margin:auto')
+  //-   form(method='POST', action='/estudiantes/agregar')
+  //-     .form-group
+  //-       label Nombre:
+  //-       input.form-control(name='nombre', type='text')
+  //-     .form-group
+  //-       label Edad:
+  //-       input.form-control(name='edad', type='text')
+  //-     br
+  //-     input.btn.btn-primary(type='submit', value='Submit')
+
+  .container  
+    .row
+    .col-md-5
+      .card
+        .card-body
+          .form(method='', action='')
+            .form-group
+              label Nombre:
+              input.form-control(name='nombre', type='text')
+          .form-group
+              label Edad:
+              input.form-control(name='edad', type='text')
+          br
+          input.btn.btn-primary(type='submit', value='Submit')
+
+    .col-md-7

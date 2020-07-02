@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
       }
     });
   });
-app.use('/estudiantes',require('./routes/estudiantes'));
+app.use('/',require('./routes/estudiantes'));
 
 
 connectDb().then(() => {
