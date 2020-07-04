@@ -12,11 +12,6 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/agregar', async (req, res) => {
-
-    // res.render('add_student', {
-    //     title: 'Agregar Estudiante',
-    // });
-
     const { nombre, edad } = req.body;
     await Estudiantes.create({ nombre, edad }, (err, estudiantes) => {
         if (err) {
@@ -38,7 +33,7 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.put('/:id', async (req, res) => {
+router.put('/editar/:id', async (req, res) => {
     try {
         Estudiantes.findById(req.params.id, function (err, estudiante) {
 
@@ -54,31 +49,24 @@ router.put('/:id', async (req, res) => {
         res.json({});
     }
 
-    let respuesta = {
-        error: false,
-        codigo: 200,
-        mensaje: 'Actualizado exitosamente',
-    };
-
-    res.send(respuesta);
+    res.json({
+        mensaje: "Actualizado"
+      });
+    
 });
 
 
-router.delete('/:id', async (req, res) => {
+router.delete('/eliminar/:id', async (req, res) => {
     try {
-        Estudiantes.deleteOne({ _id: req.params.id }, function (err, dog) { });
+        Estudiantes.deleteOne({ _id: req.params.id }, function (err, estudiante) { });
     } catch (error) {
         console.log(error);
         res.json({});
-    }
-
-    let respuesta = {
-        error: false,
-        codigo: 200,
-        mensaje: 'Eliminado exitosamente',
-    };
-
-    res.send(respuesta);
+    }    
+    res.json({
+        mensaje: "Eliminado"
+      });
+    
 });
 
 

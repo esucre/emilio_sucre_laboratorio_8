@@ -1,23 +1,6 @@
 extends ./layout.pug
 
 block content
-  //- ul.list-group
-
-  //- table.table
-  //-   thead
-  //-     tr
-  //-       th(scope='col') #
-  //-       th(scope='col') ID
-  //-       th(scope='col') Nombre
-  //-       th(scope='col') Edad
-  //-   tbody
-  //-    each estudiante, i in estudiantes
-  //-       tr
-  //-         th(scope='row')= i+1 
-  //-         td= estudiante._id
-  //-         td= estudiante.nombre
-  //-         td= estudiante.edad
-
   .container
     .row
       .col-md-5
@@ -33,7 +16,7 @@ block content
                 input.form-control(name='edad' type='text')
               br
               input.btn.btn-primary(type='submit' value='Enviar')
-      
+
       .col-md-7
         h1= "Consultar Estudiantes"    
         table.table.table-hover.table-bordered
@@ -52,7 +35,7 @@ block content
                 td= estudiante.nombre
                 td= estudiante.edad
                 td 
-                  a.btn.btn-dark(href="") Editar
-                  a.btn.btn-danger(href="") Eliminar
+                  a.btn.btn-dark.actualizar(href="") Editar
+                  a.btn.btn-danger.borrar(data-estudianteid=estudiante._id href=`/eliminar/${estudiante._id}` onclick="return confirm('¿Deseas eliminar este registro?');") Eliminar
 
 
