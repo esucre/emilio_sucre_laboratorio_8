@@ -5,7 +5,6 @@ $(document).ready(function(){
       console.log('entro');
       $target = $(e.target);
       const id = $target.attr('data-estudianteid');
-      console.log(id);
   
       $.ajax({
         type: 'DELETE',
@@ -25,7 +24,6 @@ $(document).ready(function(){
       e.preventDefault();
       $target = $(e.target);
       const id = $target.attr('data-estudianteid');
-      console.log(id);
  
       $.ajax({
         type: 'GET',
@@ -35,7 +33,7 @@ $(document).ready(function(){
         $('#edad').val(res.estudiante.edad);
         if(res.status==true){
           $('#actualizar').show();
-          
+          $('#actualizar').attr('data-estudianteid',res.estudiante._id);
         }
         else{
           $('#actualizar').hide();
@@ -61,11 +59,11 @@ $(document).ready(function(){
       e.preventDefault();
       $target = $(e.target);
       const id = $target.attr('data-estudianteid');
-      console.log(id);
- 
+
       $.ajax({
         type: 'PUT',
         url: '/editar/'+id,
+        data:{nombre:$('#nombre').val(), edad:$('#edad').val()},
         success: function (res){
         alert('Estudiante actualizado');
         location.reload();

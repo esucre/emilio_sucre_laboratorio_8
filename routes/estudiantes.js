@@ -45,29 +45,23 @@ router.get('/editar/:id', async (req, res) => {
 });
 
 
-// router.put('/editar/:id', async (req, res) => {
-//     try {
-//         Estudiantes.findById(req.params.id, function (err, estudiante) {
+router.put('/editar/:id', async (req, res) => {
+    try {
+        Estudiantes.findById(req.params.id, function (err, estudiante) {
+            estudiante.nombre = req.body.nombre;
+            estudiante.edad = req.body.edad;
+            estudiante.save();
+        })
+    } catch (error) {
+        console.log(error);
+        res.json({});
+    }
 
-//             estudiante.nombre = req.body.nombre;
-//             estudiante.edad = req.body.edad;
-//             estudiante.save();
-//             res.json({
-//                 estudiante
-//             });
-//             console.log(req.params.id);
-//             console.log(estudiante);
-//         })
-//     } catch (error) {
-//         console.log(error);
-//         res.json({});
-//     }
+    res.json({
+        status: true
+      });
 
-//     res.json({
-//         mensaje: "Actualizado"
-//       });
-
-// });
+});
 
 
 router.delete('/eliminar/:id', async (req, res) => {
