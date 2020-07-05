@@ -38,6 +38,7 @@ router.post('/agregar', async (req, res) => {
 router.get('/editar/:id', async (req, res) => {
     await Estudiantes.findById(req.params.id, (err, estudiante) => {
         res.json({
+            status:true,
             estudiante
         });
     });

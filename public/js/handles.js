@@ -21,7 +21,7 @@ $(document).ready(function(){
 
     });
 
-    $('.btn.btn-dark.actualizar').on('click', function(e){
+    $('.btn.btn-dark.editar').on('click', function(e){
       e.preventDefault();
       $target = $(e.target);
       const id = $target.attr('data-estudianteid');
@@ -33,9 +33,22 @@ $(document).ready(function(){
         success: function (res){
         $('#nombre').val(res.estudiante.nombre);
         $('#edad').val(res.estudiante.edad);
-        console.log(response);
-        // alert('Estudiante actualizado');
-        // location.reload();
+        if(res.status==true){
+          $('#actualizar').show();
+          
+        }
+        else{
+          $('#actualizar').hide();
+        }
+        $("input").keyup(()=>{
+          if($('#nombre').val()==='' ||$('#edad').val()==='' ) {
+            $('#actualizar').hide();
+          }
+          else{
+            $('#actualizar').show();
+          }
+        })
+
         },
         error: function(err){
         console.error(err);
@@ -44,7 +57,7 @@ $(document).ready(function(){
 
     });
 
-    $('.btn.btn-primary.enviar').on('click', function(e){
+    $('.btn.btn-primary.actualizar').on('click', function(e){
       e.preventDefault();
       $target = $(e.target);
       const id = $target.attr('data-estudianteid');

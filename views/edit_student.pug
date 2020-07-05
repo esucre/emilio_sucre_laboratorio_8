@@ -5,9 +5,10 @@
             form(method='POST' action='/agregar')
                 form-group
                     label Nombre:
-                    input.form-control(name='nombre' type='text' value=estudiantes.nombre   id='nombre')
+                    input.form-control(name='nombre' type='text'  id='nombre')
                 form-group
                     label Edad:
                     input.form-control(name='edad' type='text' id='edad')
                 br
-                input.btn.btn-primary(type='submit' value='Enviar')
+                input.btn.btn-primary(type='submit' value='Enviar' style='margin-right:5px;')
+                a.btn.btn-primary.actualizar(style='display:none; color:white;' id='actualizar') Actualizar

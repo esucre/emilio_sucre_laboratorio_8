@@ -23,7 +23,7 @@ block content
                 td= estudiante.nombre
                 td= estudiante.edad
                 td 
-                  a.btn.btn-dark.actualizar(data-estudianteid=estudiante._id href=`/editar/${estudiante._id}`) Editar
+                  a.btn.btn-dark.editar(data-estudianteid=estudiante._id href=`/editar/${estudiante._id}`) Editar
                   a.btn.btn-danger.borrar(data-estudianteid=estudiante._id href=`/eliminar/${estudiante._id}` onclick="return confirm('¿Deseas eliminar este registro?');") Eliminar
 
 
