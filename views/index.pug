@@ -3,20 +3,8 @@ extends ./layout.pug
 block content
   .container
     .row
-      .col-md-5
-        h1= "Agregar Estudiante"          
-        .card
-          .card-body
-            form(method='POST' action='/agregar')
-              form-group
-                label Nombre:
-                input.form-control(name='nombre' type='text')
-              form-group
-                label Edad:
-                input.form-control(name='edad' type='text')
-              br
-              input.btn.btn-primary(type='submit' value='Enviar')
-
+      include ./edit_student.pug
+      
       .col-md-7
         h1= "Consultar Estudiantes"    
         table.table.table-hover.table-bordered
@@ -35,7 +23,7 @@ block content
                 td= estudiante.nombre
                 td= estudiante.edad
                 td 
-                  a.btn.btn-dark.actualizar(href="") Editar
+                  a.btn.btn-dark.actualizar(data-estudianteid=estudiante._id href=`/editar/${estudiante._id}`) Editar
                   a.btn.btn-danger.borrar(data-estudianteid=estudiante._id href=`/eliminar/${estudiante._id}` onclick="return confirm('¿Deseas eliminar este registro?');") Eliminar
 
 
